@@ -264,7 +264,7 @@
  */
 - (void) centralManager:(CBCentralManager *)central didDiscoverPeripheral:(CBPeripheral *)aPeripheral advertisementData:(NSDictionary *)advertisementData RSSI:(NSNumber *)RSSI 
 {    
-    NSLog(@"<---------\n[CBController] didDiscoverPeripheral, %@, count=%u, RSSI=%d, count=%d", aPeripheral.UUID, [advertisementData count], [RSSI intValue], [devicesList count]);
+    NSLog(@"<---------\n[CBController] didDiscoverPeripheral, %@, count=%u, RSSI=%d, count=%d", aPeripheral.identifier.UUIDString, [advertisementData count], [RSSI intValue], [devicesList count]);
     NSArray *advDataArray = [advertisementData allValues];
     NSArray *advValueArray = [advertisementData allKeys];
     for (int i=0; i < [advertisementData count]; i++)
@@ -294,7 +294,7 @@
  */
 - (void) centralManager:(CBCentralManager *)central didConnectPeripheral:(CBPeripheral *)aPeripheral 
 {    
-    NSLog(@"[CBController] didConnectPeripheral, uuid=%@", aPeripheral.UUID);
+    NSLog(@"[CBController] didConnectPeripheral, uuid=%@", aPeripheral.identifier.UUIDString);
 
     [aPeripheral setDelegate:self];
 
@@ -314,7 +314,7 @@
  */
 - (void)centralManager:(CBCentralManager *)central didDisconnectPeripheral:(CBPeripheral *)aPeripheral error:(NSError *)error
 {
-    NSLog(@"[CBController] didDisonnectPeripheral uuid = %@, error msg:%d, %@, %@", aPeripheral.UUID, error.code ,[error localizedFailureReason], [error localizedDescription]);
+    NSLog(@"[CBController] didDisonnectPeripheral uuid = %@, error msg:%d, %@, %@", aPeripheral.identifier.UUIDString, error.code ,[error localizedFailureReason], [error localizedDescription]);
 
     [self removeMyPeripheral:aPeripheral];
 }

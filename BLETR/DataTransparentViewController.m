@@ -485,7 +485,9 @@
     if ([data length] > 0) {
         int segmentIndex = [self.segmentedControl selectedSegmentIndex];
         
-        NSMutableString *str = [[NSMutableString alloc] initWithData:data encoding:NSASCIIStringEncoding];
+        NSMutableString *str = [[NSMutableString alloc] initWithBytes:data.bytes length:data.length encoding:NSASCIIStringEncoding];
+        NSLog(@"REcu:%@",str);
+        
         [str replaceOccurrencesOfString:@"\n" withString:@"<br>" options:NSLiteralSearch range:NSMakeRange(0, [str length])];
         [content appendFormat:@"<span style=\"color:red\">%@</span><br>", str];
         if (segmentIndex == CBLoopBackMode) {
