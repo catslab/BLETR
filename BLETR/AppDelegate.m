@@ -30,7 +30,8 @@
     navigationController = [[UINavigationController alloc] initWithRootViewController:self.viewController];
     [navigationController setDelegate:self];
     _pageTransition = FALSE;
-    [self.window addSubview:[navigationController view]];
+    //[self.window addSubview:[navigationController view]];
+     [self.window setRootViewController:navigationController];
     [self.window makeKeyAndVisible];
     return YES;
 }
